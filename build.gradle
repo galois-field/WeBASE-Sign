@@ -91,6 +91,7 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.6'
     compile "org.bouncycastle:bcprov-jdk15on:1.69"
     compile 'org.yaml:snakeyaml:2.0'
+    compile 'com.highgo:HgdbJdbc:6.2.3'
 
     compile 'org.projectlombok:lombok:1.18.6'
     annotationProcessor 'org.projectlombok:lombok:1.18.6'
@@ -135,6 +136,10 @@ jar {
 			from configurations.runtime
 			into 'dist/lib'
 		}
+        copy {
+            from file('script/')
+            into 'dist/script'
+        }
 		copy {
 			from file('.').listFiles().findAll{File f -> (f.name.endsWith('.sh') || f.name.endsWith('.env'))}
 			into 'dist'
